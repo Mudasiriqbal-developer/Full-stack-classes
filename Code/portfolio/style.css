@@ -1,0 +1,112 @@
+body {
+    margin : 0;
+    padding : 0;
+    background-color : #323030;
+}
+
+header {
+    background-color : #282727;
+    color : rgb(231, 224, 224);
+    padding : 15px;
+    text-align : center;
+    height: 20px;
+    
+}
+
+nav a {
+    color : rgb(255, 251, 251);
+    text-decoration : none;
+    margin : 0 15px;
+    font-size : 18px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.portfolio-pic {
+    width : 25%;
+    height : 220px;
+    position: absolute;
+    top: 20%;
+    right: 20px;
+    border-radius: 100%;
+}
+
+.intro {
+    color: white;
+    padding: 20px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.div {
+    /* margin-top: 80px; */
+    width: 60%;
+    height: 100%;
+    padding: 5px;
+    margin-bottom: 100px;
+}
+
+.all-projects {
+    width: 100%;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    justify-content: space-evenly;
+    display: flex;
+
+}
+
+.project {
+    margin-top: 50px;
+    margin-left: 20px;
+    padding: 10px;
+    background-color: #282727;
+    border-radius: 10px;
+    height: auto;
+    width: 40%;
+}
+
+.project h3 {
+    margin-top: 0;
+    color: rgb(221, 106, 106);
+}
+
+.project-pic {
+    width: 100%;
+    height: 150px;
+    float: left;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
+form {
+    margin-top: 50px;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    color: white;
+    display:block;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    margin-top: 100px;
+    padding: 20px;
+    transform: translate(-50%, -50%);
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 2px solid #4e4b4b;
+    background-color: #282727;
+    color: white;
+}
+
+.send {
+    background-color: #4e4b4b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
