@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MMI — Premium Store</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --brand:       #1a1a2e;
+      --brand-mid:   #16213e;
+      --accent:      #e8b86d;
+      --accent-dark: #c9962a;
+      --light-bg:    #f7f5f0;
+      --card-bg:     #ffffff;
+      --text-main:   #1a1a2e;
+      --text-muted:  #6b6b80;
+      --border:      #e8e4dc;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--light-bg);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    /* ── ANNOUNCEMENT BAR ── */
+    .announce-bar {
+      background: var(--accent);
+      color: var(--brand);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 8px;
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      background: var(--brand);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 14px 40px;
+    }
+
+    /* Logo */
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .logo-mark {
+      width: 42px;
+      height: 42px;
+      background: var(--accent);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 18px;
+      color: var(--brand);
+    }
+
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 2px;
+    }
+
+    /* Search */
+    .search-wrap {
+      flex: 1;
+      max-width: 520px;
+      position: relative;
+    }
+
+    .search-wrap input {
+      width: 100%;
+      padding: 10px 48px 10px 18px;
+      border-radius: 30px;
+      border: 2px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.07);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .search-wrap input::placeholder { color: rgba(255,255,255,0.4); }
+    .search-wrap input:focus {
+      border-color: var(--accent);
+      background: rgba(255,255,255,0.1);
+    }
+
+    .search-wrap .search-btn {
+      position: absolute;
+      right: 6px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--accent);
+      border: none;
+      border-radius: 50%;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--brand);
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .search-wrap .search-btn:hover { background: var(--accent-dark); }
+
+    /* Header icons */
+    .header-icons {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+
+    .hicon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      text-decoration: none;
+      color: rgba(255,255,255,0.75);
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: color 0.2s, background 0.2s;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      position: relative;
+    }
+
+    .hicon:hover { color: var(--accent); background: rgba(255,255,255,0.05); }
+    .hicon i { font-size: 20px; }
+
+    .cart-badge {
+      position: absolute;
+      top: 4px;
+      right: 8px;
+      background: var(--accent);
+      color: var(--brand);
+      font-size: 9px;
+      font-weight: 700;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── NAV ── */
+    .site-nav {
+      background: var(--brand-mid);
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .site-nav ul {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      margin: 0;
+      padding: 0 40px;
+      gap: 4px;
+    }
+
+    .site-nav ul li a {
+      display: block;
+      padding: 12px 16px;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      border-bottom: 2px solid transparent;
+    }
+
+    .site-nav ul li a:hover,
+    .site-nav ul li a.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    /* ── HERO BANNER ── */
+    .hero-banner {
+      background: linear-gradient(135deg, var(--brand) 0%, #2d2d5e 50%, var(--brand-mid) 100%);
+      padding: 80px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-banner::before {
+      content: 'MMI';
+      position: absolute;
+      font-family: 'Playfair Display', serif;
+      font-size: 260px;
+      font-weight: 900;
+      color: rgba(255,255,255,0.03);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      user-select: none;
+      letter-spacing: 20px;
+    }
+
+    .hero-banner .eyebrow {
+      font-size: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    .hero-banner h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(40px, 8vw, 90px);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 16px;
+      letter-spacing: 4px;
+    }
+
+    .hero-banner p {
+      color: rgba(255,255,255,0.55);
+      font-size: 16px;
+      max-width: 500px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent);
+      color: var(--brand);
+      padding: 14px 36px;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .hero-cta:hover { background: var(--accent-dark); color: var(--brand); transform: translateY(-2px); }
+
+    /* ── CATEGORY PILLS ── */
+    .category-strip {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 16px 40px;
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .category-strip::-webkit-scrollbar { display: none; }
+
+    .cat-pill {
+      flex-shrink: 0;
+      padding: 7px 20px;
+      border-radius: 30px;
+      border: 1.5px solid var(--border);
+      background: transparent;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .cat-pill:hover, .cat-pill.active {
+      background: var(--brand);
+      border-color: var(--brand);
+      color: #fff;
+    }
+
+    /* ── PRODUCTS SECTION ── */
+    .products-section {
+      padding: 60px 40px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--brand);
+      line-height: 1;
+    }
+
+    .section-title span {
+      display: block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .view-all {
+      color: var(--accent-dark);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 1px solid var(--accent-dark);
+      padding-bottom: 2px;
+    }
+
+    /* ── PRODUCT CARD ── */
+    .product-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    }
+
+    .card-img-wrap {
+      position: relative;
+      background: #f0ede8;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .card-img-wrap .product-emoji {
+      font-size: 90px;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover .product-emoji { transform: scale(1.1) rotate(-5deg); }
+
+    .badge-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: var(--brand);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    .badge-tag.sale { background: #e05252; }
+    .badge-tag.new  { background: #2e9e6e; }
+
+    .wishlist-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 36px;
+      height: 36px;
+      background: #fff;
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: #ccc;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: color 0.2s, transform 0.2s;
+    }
+    .wishlist-btn:hover { color: #e05252; transform: scale(1.1); }
+    .wishlist-btn.active { color: #e05252; }
+
+    .card-body-custom {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .product-category {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+      margin-bottom: 6px;
+    }
+
+    .product-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .product-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 14px;
+      flex: 1;
+    }
+
+    .rating-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .stars { color: var(--accent); font-size: 13px; letter-spacing: 1px; }
+    .rating-count { font-size: 12px; color: var(--text-muted); }
+
+    .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .price-current {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--brand);
+    }
+
+    .price-original {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-decoration: line-through;
+      margin-left: 6px;
+    }
+
+    .price-save {
+      font-size: 12px;
+      background: #fff3e0;
+      color: #e65100;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+
+    .btn-cart {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      background: var(--brand);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-cart:hover  { background: var(--accent-dark); }
+    .btn-cart:active { transform: scale(0.98); }
+    .btn-cart.added  { background: #2e9e6e; }
+
+    /* ── PROMO BANNER ── */
+    .promo-banner {
+      margin: 0 40px 60px;
+      background: linear-gradient(120deg, var(--brand) 0%, #3a1a6e 100%);
+      border-radius: 20px;
+      padding: 50px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      overflow: hidden;
+      position: relative;
+    }
+    .promo-banner::after {
+      content: '✦';
+      position: absolute;
+      right: 50px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 160px;
+      color: rgba(255,255,255,0.04);
+    }
+    .promo-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .promo-text p { color: rgba(255,255,255,0.6); font-size: 15px; }
+    .promo-code {
+      background: rgba(255,255,255,0.1);
+      border: 1.5px dashed rgba(255,255,255,0.3);
+      padding: 6px 16px;
+      border-radius: 6px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 4px;
+      display: inline-block;
+      margin-top: 14px;
+    }
+    .promo-cta {
+      flex-shrink: 0;
+      background: var(--accent);
+      color: var(--brand);
+      border: none;
+      padding: 14px 32px;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    .promo-cta:hover { background: #fff; }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      background: var(--brand);
+      color: rgba(255,255,255,0.6);
+      padding: 60px 40px 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 50px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer-brand .logo-text { font-size: 28px; margin-bottom: 14px; display: block; }
+    .footer-brand p { font-size: 14px; line-height: 1.7; max-width: 260px; }
+
+    .social-links { display: flex; gap: 10px; margin-top: 20px; }
+    .social-links a {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 15px;
+      transition: all 0.2s;
+    }
+    .social-links a:hover { background: var(--accent); border-color: var(--accent); color: var(--brand); }
+
+    .footer-col h5 {
+      font-family: 'Playfair Display', serif;
+      color: #fff;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    .footer-col ul { list-style: none; padding: 0; margin: 0; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--accent); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+      font-size: 13px;
+    }
+
+    .footer-bottom .pay-icons { display: flex; gap: 8px; font-size: 22px; color: rgba(255,255,255,0.4); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 991px) {
+      .header-top { padding: 12px 20px; }
+      .products-section { padding: 40px 20px; }
+      .promo-banner { margin: 0 20px 40px; padding: 30px; flex-direction: column; text-align: center; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .site-nav ul { padding: 0 20px; }
+      .category-strip { padding: 16px 20px; }
+    }
+
+    @media (max-width: 576px) {
+      .header-top { gap: 12px; }
+      .logo-text { display: none; }
+      .hicon span { display: none; }
+      .section-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Announcement Bar -->
+<div class="announce-bar">🚀 Free Shipping on orders over $50 &nbsp;|&nbsp; Use code: MMI2025</div>
+
+<!-- ══ HEADER ══ -->
+<header class="site-header">
+  <div class="header-top">
+
+    <!-- Logo -->
+    <a href="#" class="brand-logo">
+      <div class="logo-mark">M</div>
+      <span class="logo-text">MMI</span>
+    </a>
+
+    <!-- Search -->
+    <div class="search-wrap">
+      <input type="text" placeholder="Search products, brands..." />
+      <button class="search-btn"><i class="bi bi-search"></i></button>
+    </div>
+
+    <!-- Icons -->
+    <div class="header-icons">
+      <a href="#" class="hicon">
+        <i class="bi bi-person"></i>
+        <span>Account</span>
+      </a>
+      <a href="#" class="hicon">
+        <i class="bi bi-bag-check"></i>
+        <span>Orders</span>
+      </a>
+      <a href="#" class="hicon">
+        <i class="bi bi-heart"></i>
+        <span>Wishlist</span>
+      </a>
+      <a href="#" class="hicon" style="position:relative;">
+        <i class="bi bi-cart3"></i>
+        <span>Cart</span>
+        <div class="cart-badge">3</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="site-nav">
+    <ul>
+      <li><a href="#" class="active">Home</a></li>
+      <li><a href="#">Electronics</a></li>
+      <li><a href="#">Fashion</a></li>
+      <li><a href="#">Home & Living</a></li>
+      <li><a href="#">Beauty</a></li>
+      <li><a href="#">Sports</a></li>
+      <li><a href="#">Books</a></li>
+      <li><a href="#" style="color: #e05252;">🔥 Deals</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ══ HERO BANNER ══ -->
+<section class="hero-banner">
+  <p class="eyebrow">Welcome to the future of shopping</p>
+  <h1>MMI</h1>
+  <p>Discover curated products crafted for modern lifestyles. Quality. Style. Value.</p>
+  <a href="#products" class="hero-cta">
+    Shop Now <i class="bi bi-arrow-right"></i>
+  </a>
+</section>
+
+<!-- Category Strip -->
+<div class="category-strip">
+  <button class="cat-pill active">All Products</button>
+  <button class="cat-pill">Electronics</button>
+  <button class="cat-pill">Fashion</button>
+  <button class="cat-pill">Home</button>
+  <button class="cat-pill">Beauty</button>
+  <button class="cat-pill">Sports</button>
+  <button class="cat-pill">Books</button>
+  <button class="cat-pill">New Arrivals</button>
+  <button class="cat-pill">Best Sellers</button>
+</div>
+
+<!-- ══ PRODUCTS ══ -->
+<section class="products-section" id="products">
+  <div class="section-header">
+    <div class="section-title">
+      <span>Handpicked for you</span>
+      Featured Products
+    </div>
+    <a href="#" class="view-all">View All <i class="bi bi-arrow-right"></i></a>
+  </div>
+
+  <div class="row g-4">
+
+    <!-- Card 1 -->
+    <div class="col-sm-6 col-lg-4 col-xl-3">
+      <div class="product-card">
+        <div class="card-img-wrap">
+          <span class="badge-tag new">New</span>
+          <div class="product-emoji">🎧</div>
+          <button class="wishlist-btn"><i class="bi bi-heart-fill"></i></button>
+        </div>
+        <div class="card-body-custom">
+          <div class="product-category">Electronics</div>
+          <div class="product-name">ProSound Wireless Headphones</div>
+          <div class="product-desc">Active noise cancellation, 40-hour battery life, and studio-quality sound in a sleek foldable design.</div>
+          <div class="rating-row">
+            <div class="stars">★★★★★</div>
+            <div class="rating-count">4.9 (2,341 reviews)</div>
+          </div>
+          <div class="price-row">
+            <div>
+              <span class="price-current">$129</span>
+              <span class="price-original">$199</span>
+            </div>
+            <span class="price-save">35% OFF</span>
+          </div>
+          <button class="btn-cart" onclick="addToCart(this)">
+            <i class="bi bi-cart-plus"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="col-sm-6 col-lg-4 col-xl-3">
+      <div class="product-card">
+        <div class="card-img-wrap">
+          <span class="badge-tag sale">Sale</span>
+          <div class="product-emoji">⌚</div>
+          <button class="wishlist-btn"><i class="bi bi-heart-fill"></i></button>
+        </div>
+        <div class="card-body-custom">
+          <div class="product-category">Wearables</div>
+          <div class="product-name">Apex SmartWatch Pro</div>
+          <div class="product-desc">Health tracking, GPS, 7-day battery, AMOLED display. Your ultimate fitness companion.</div>
+          <div class="rating-row">
+            <div class="stars">★★★★★</div>
+            <div class="rating-count">4.8 (1,890 reviews)</div>
+          </div>
+          <div class="price-row">
+            <div>
+              <span class="price-current">$249</span>
+              <span class="price-original">$349</span>
+            </div>
+            <span class="price-save">28% OFF</span>
+          </div>
+          <button class="btn-cart" onclick="addToCart(this)">
+            <i class="bi bi-cart-plus"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="col-sm-6 col-lg-4 col-xl-3">
+      <div class="product-card">
+        <div class="card-img-wrap">
+          <div class="product-emoji">👟</div>
+          <button class="wishlist-btn"><i class="bi bi-heart-fill"></i></button>
+        </div>
+        <div class="card-body-custom">
+          <div class="product-category">Fashion</div>
+          <div class="product-name">UltraRun Air Sneakers</div>
+          <div class="product-desc">Engineered mesh upper with responsive foam cushioning. Perfect for running and everyday style.</div>
+          <div class="rating-row">
+            <div class="stars">★★★★☆</div>
+            <div class="rating-count">4.6 (4,210 reviews)</div>
+          </div>
+          <div class="price-row">
+            <div>
+              <span class="price-current">$89</span>
+              <span class="price-original">$120</span>
+            </div>
+            <span class="price-save">26% OFF</span>
+          </div>
+          <button class="btn-cart" onclick="addToCart(this)">
+            <i class="bi bi-cart-plus"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="col-sm-6 col-lg-4 col-xl-3">
+      <div class="product-card">
+        <div class="card-img-wrap">
+          <span class="badge-tag new">New</span>
+          <div class="product-emoji">💻</div>
+          <button class="wishlist-btn"><i class="bi bi-heart-fill"></i></button>
+        </div>
+        <div class="card-body-custom">
+          <div class="product-category">Electronics</div>
+          <div class="product-name">SlimBook Pro 14" Laptop</div>
+          <div class="product-desc">Intel Core i7, 16GB RAM, 512GB SSD, 14" IPS display. Ultrabook for professionals.</div>
+          <div class="rating-row">
+            <div class="stars">★★★★★</div>
+            <div class="rating-count">4.9 (987 reviews)</div>
+          </div>
+          <div class="price-row">
+            <div>
+              <span class="price-current">$999</span>
+              <span class="price-original">$1,299</span>
+            </div>
+            <span class="price-save">23% OFF</span>
+          </div>
+          <button class="btn-cart" onclick="addToCart(this)">
+            <i class="bi bi-cart-plus"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="col-sm-6 col-lg-4 col-xl-3">
+      <div class="product-card">
+        <div class="card-img-wrap">
+          <div class="product-emoji">🌿</div>
+          <button class="wishlist-btn"><i class="bi bi-heart-fill"></i></button>
+        </div>
+        <div class="card-body-custom">
+          <div class="product-category">Beauty</div>
+          <div class="product-name">Glow Serum Collection</div>
+          <div class="product-desc">Vitamin C + Hyaluronic Acid formula. Brightens, hydrates, and firms skin in 2 weeks.</div>
+          <div class="rating-row">
+            <div class="stars">★★★★★</div>
+            <div class="rating-count">4.8 (3,102 reviews)</div>
+          </div>
+          <div class="price-row">
+            <div>
+              <span class="price-current">$45</span>
+              <span class="price-original">$69</span>
+            </div>
+            <span class="price-save">35% OFF</span>
+          </div>
+          <button class="btn-cart" onclick="addToCart(this)">
+            <i class="bi bi-cart-plus"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="col-sm-6 col-lg-4 col-xl-3">
+      <div class="product-card">
+        <div class="card-img-wrap">
+          <span class="badge-tag sale">Sale</span>
+          <div class="product-emoji">📱</div>
+          <button class="wishlist-btn"><i class="bi bi-heart-fill"></i></button>
+        </div>
+        <div class="card-body-custom">
+          <div class="product-category">Electronics</div>
+          <div class="product-name">ZenPhone X15 Ultra</div>
+          <div class="product-desc">108MP camera, 5000mAh battery, 120Hz AMOLED. The phone that does it all.</div>
+          <div class="rating-row">
+            <div class="stars">★★★★☆</div>
+            <div class="rating-count">4.7 (5,431 reviews)</div>
+          </div>
+          <div class="price-row">
+            <div>
+              <span class="price-current">$599</span>
+              <span class="price-original">$799</span>
+            </div>
+            <span class="price-save">25% OFF</span>
+          </div>
+          <button class="btn-cart" onclick="addToCart(this)">
+            <i class="bi bi-cart-plus"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 7 -->
+    <div class="col-sm-6 col-lg-4 col-xl-3">
+      <div class="product-card">
+        <div class="card-img-wrap">
+          <div class="product-emoji">🎮</div>
+          <button class="wishlist-btn"><i class="bi bi-heart-fill"></i></button>
+        </div>
+        <div class="card-body-custom">
+          <div class="product-category">Gaming</div>
+          <div class="product-name">NexGen Controller Pro</div>
+          <div class="product-desc">Wireless, 20-hour battery, haptic feedback, compatible with PC, PS & Xbox. Built for winners.</div>
+          <div class="rating-row">
+            <div class="stars">★★★★★</div>
+            <div class="rating-count">4.9 (1,233 reviews)</div>
+          </div>
+          <div class="price-row">
+            <div>
+              <span class="price-current">$69</span>
+              <span class="price-original">$99</span>
+            </div>
+            <span class="price-save">30% OFF</span>
+          </div>
+          <button class="btn-cart" onclick="addToCart(this)">
+            <i class="bi bi-cart-plus"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 8 -->
+    <div class="col-sm-6 col-lg-4 col-xl-3">
+      <div class="product-card">
+        <div class="card-img-wrap">
+          <span class="badge-tag new">New</span>
+          <div class="product-emoji">☕</div>
+          <button class="wishlist-btn"><i class="bi bi-heart-fill"></i></button>
+        </div>
+        <div class="card-body-custom">
+          <div class="product-category">Home & Kitchen</div>
+          <div class="product-name">BrewMaster Smart Coffee Maker</div>
+          <div class="product-desc">App-controlled, 12-cup capacity, built-in grinder. Brew perfect coffee from your phone.</div>
+          <div class="rating-row">
+            <div class="stars">★★★★☆</div>
+            <div class="rating-count">4.5 (789 reviews)</div>
+          </div>
+          <div class="price-row">
+            <div>
+              <span class="price-current">$149</span>
+              <span class="price-original">$199</span>
+            </div>
+            <span class="price-save">25% OFF</span>
+          </div>
+          <button class="btn-cart" onclick="addToCart(this)">
+            <i class="bi bi-cart-plus"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ PROMO BANNER ══ -->
+<div class="promo-banner">
+  <div class="promo-text">
+    <h2>Members get 20% extra off 🎉</h2>
+    <p>Sign up for MMI Premium and unlock exclusive deals, early access, and free express shipping.</p>
+    <div class="promo-code">MMI2025</div>
+  </div>
+  <button class="promo-cta">Get Premium Access</button>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="logo-text">MMI</span>
+      <p>Your trusted destination for premium products at unbeatable prices. Shop smart, live better.</p>
+      <div class="social-links">
+        <a href="#"><i class="bi bi-instagram"></i></a>
+        <a href="#"><i class="bi bi-twitter-x"></i></a>
+        <a href="#"><i class="bi bi-facebook"></i></a>
+        <a href="#"><i class="bi bi-youtube"></i></a>
+        <a href="#"><i class="bi bi-linkedin"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h5>Shop</h5>
+      <ul>
+        <li><a href="#">New Arrivals</a></li>
+        <li><a href="#">Best Sellers</a></li>
+        <li><a href="#">Deals & Offers</a></li>
+        <li><a href="#">Electronics</a></li>
+        <li><a href="#">Fashion</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>Support</h5>
+      <ul>
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Track Order</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Live Chat</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#">About MMI</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 MMI Store. All rights reserved. Made with ❤️ for great shoppers.</p>
+    <div class="pay-icons">
+      <i class="bi bi-credit-card-2-front" title="Visa/MC"></i>
+      <i class="bi bi-paypal" title="PayPal"></i>
+      <i class="bi bi-phone" title="Mobile Pay"></i>
+      <i class="bi bi-shield-check" title="Secure"></i>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // Cart counter
+  let cartCount = 3;
+
+  function addToCart(btn) {
+    btn.classList.add('added');
+    btn.innerHTML = '<i class="bi bi-check-lg"></i> Added!';
+    cartCount++;
+    document.querySelector('.cart-badge').textContent = cartCount;
+    setTimeout(() => {
+      btn.classList.remove('added');
+      btn.innerHTML = '<i class="bi bi-cart-plus"></i> Add to Cart';
+    }, 1800);
+  }
+
+  // Wishlist toggle
+  document.querySelectorAll('.wishlist-btn').forEach(btn => {
+    btn.addEventListener('click', () => btn.classList.toggle('active'));
+  });
+
+  // Category pills
+  document.querySelectorAll('.cat-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
