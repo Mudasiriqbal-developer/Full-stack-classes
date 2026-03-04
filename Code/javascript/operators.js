@@ -20,6 +20,7 @@ document.writeln(
     linkin.name,
     "<br> Age: ",
     linkin.age,
+    
     linkin.isMale,
 
 )
