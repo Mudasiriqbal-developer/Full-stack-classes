@@ -1,50 +1,91 @@
 export function Body() {
   return (
     <>
-      <h1 className="text-3xl font-bold underline">Body</h1>
-      <p>
-        This is the body content. Where the main content of the page will be
-        displayed. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Sequi deleniti similique expedita consequatur accusamus inventore, modi
-        necessitatibus? Mollitia maiores minima rem enim, velit magnam, alias
-        incidunt magni voluptatum dignissimos in? Lorem ipsum dolor sit amet
-        consectetur adipisicing elit. Eaque, laboriosam. Cum autem dolores
-        suscipit quis sed odio quidem dolorem accusantium vel possimus rem iure,
-        omnis in illo animi eos vero? Lorem ipsum dolor, sit amet consectetur
-        adipisicing elit. Minima quisquam, laudantium, rem adipisci deserunt
-        itaque veniam quod in fuga quibusdam placeat quam, architecto neque
-        praesentium soluta dicta maiores obcaecati accusamus?body content. Where 
-        the main content of the page will be
-        displayed. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Sequi deleniti similique expedita consequatur accusamus inventore, modi
-        necessitatibus? Mollitia maiores minima rem enim, velit magnam, alias
-        incidunt magni voluptatum dignissimos in? Lorem ipsum dolor sit amet
-        consectetur adipisicing elit. Eaque, laboriosam. Cum autem dolores
-        suscipit quis sed odio quidem dolorem accusantium vel possimus rem iure,
-        omnis in illo animi eos vero? Lorem ipsum dolor, sit amet consectetur
-        adipisicing elit. Minima quisquam, laudantium, rem adipisci deserunt
-        itaque veniam quod in fuga quibusdam placeat quam, architecto neque
-        praesentium soluta dicta maiores obcaecati accusamus?body content. Where 
-        the main content of the page will be
-        displayed. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Sequi deleniti similique expedita consequatur accusamus inventore, modi
-        necessitatibus? Mollitia maiores minima rem enim, velit magnam, alias
-        incidunt magni voluptatum dignissimos in? Lorem ipsum dolor sit amet
-        consectetur adipisicing elit. Eaque, laboriosam. Cum autem dolores
-        suscipit quis sed odio quidem dolorem accusantium vel possimus rem iure,
-        omnis in illo animi eos vero? Lorem ipsum dolor, sit amet consectetur
-        adipisicing elit. Minima quisquam, laudantium, rem adipisci deserunt
-        itaque veniam quod in fuga quibusdam placeat quam, architecto neque
-        praesentium soluta dicta maiores obcaecati accusamus? rem adipisci deserunt
-        itaque veniam quod in fuga quibusdam placeat quam, architecto neque
-        praesentium soluta dicta maiores obcaecati accusamus?architecto neque
-        praesentium soluta dicta maiores obcaecati accusamus?architecto neque
-        praesentium soluta dicta maiores obcaecati accusamus?architecto neque
-        praesentium soluta dicta maiores obcaecati accusamus?architecto neque
-        praesentium soluta dicta maiores obcaecati accusamus?
+    <h2 className="flex justify-center align-middle text-6xl bg-gray-800  text-amber-50 pb-3 p-1">PRODUCTS</h2>
+      <div class="bg-gray-300">
         
-      </p>
-      
+        <div class="p-2">
+
+          <div class=" grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+            <div class="group relative">
+              <img
+                src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg"
+                alt="Front of men&#039;s Basic Tee in black."
+                class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80"
+              />
+              <div class="mt-4 flex justify-between">
+                <div>
+                  <h3 class="text-sm text-gray-700">
+                    <a href="#">
+                      <span aria-hidden="true" class="absolute inset-0"></span>
+                      Basic Tee
+                    </a>
+                  </h3>
+                  <p class="mt-1 text-sm text-gray-500">Black</p>
+                </div>
+                <p class="text-sm font-medium text-gray-900">$35</p>
+              </div>
+            </div>
+            <div class="group relative">
+              <img
+                src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-02.jpg"
+                alt="Front of men&#039;s Basic Tee in white."
+                class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80"
+              />
+              <div class="mt-4 flex justify-between">
+                <div>
+                  <h3 class="text-sm text-gray-700">
+                    <a href="#">
+                      <span aria-hidden="true" class="absolute inset-0"></span>
+                      Basic Tee
+                    </a>
+                  </h3>
+                  <p class="mt-1 text-sm text-gray-500">Aspen White</p>
+                </div>
+                <p class="text-sm font-medium text-gray-900">$35</p>
+              </div>
+            </div>
+            <div class="group relative">
+              <img
+                src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-03.jpg"
+                alt="Front of men&#039;s Basic Tee in dark gray."
+                class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80"
+              />
+              <div class="mt-4 flex justify-between">
+                <div>
+                  <h3 class="text-sm text-gray-700">
+                    <a href="#">
+                      <span aria-hidden="true" class="absolute inset-0"></span>
+                      Basic Tee
+                    </a>
+                  </h3>
+                  <p class="mt-1 text-sm text-gray-500">Charcoal</p>
+                </div>
+                <p class="text-sm font-medium text-gray-900">$35</p>
+              </div>
+            </div>
+            <div class="group relative">
+              <img
+                src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-04.jpg"
+                alt="Front of men&#039;s Artwork Tee in peach with white and brown dots forming an isometric cube."
+                class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80"
+              />
+              <div class="mt-4 flex justify-between">
+                <div>
+                  <h3 class="text-sm text-gray-700">
+                    <a href="#">
+                      <span aria-hidden="true" class="absolute inset-0"></span>
+                      Artwork Tee
+                    </a>
+                  </h3>
+                  <p class="mt-1 text-sm text-gray-500">Iso Dots</p>
+                </div>
+                <p class="text-sm font-medium text-gray-900">$35</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
